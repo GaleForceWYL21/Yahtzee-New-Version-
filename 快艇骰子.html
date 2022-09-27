@@ -1,0 +1,729 @@
+<!DOCTYPE html>
+<!-- saved from url=(0072)file:///Users/legendfrozen/IdeaProjects/YahtzeeDemo/src/web/Yahtzee.html -->
+<html lang="ch"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+    
+    <title>快艇骰子</title>
+    <style>
+        span {
+            color: grey;
+        }
+
+        #total {
+            color: crimson;
+
+        }
+
+        .all {
+            display: flex;
+            flex: 1;
+            flex-direction: row;
+
+        }
+
+        .insideLeft {
+            background-color: bisque;
+            display: flex;
+            flex: 1;
+            flex-direction: column;
+            margin: 10%;
+
+        }
+
+        .left {
+            width: 40%;
+            background-color: aquamarine;
+        }
+
+        .submit {
+            width: 40%;
+            background-color: aquamarine;
+            
+
+        }
+
+        .submit:hover {
+            background-color: rgb(101, 173, 132);
+        }
+
+        .subcss {
+            margin: 4%;
+            
+        }
+
+        .gameover,
+        .diceUp,
+        .diceDown,
+        .rollDice,
+        .rule {
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .diceUp,
+        .diceDown {
+            margin: 0 auto;
+        }
+        .btn:hover,.check:hover{
+            background-color: rgba(105, 105, 105, 0.435);
+        }
+
+        .btn {
+            width: 25%;
+            height: 12vw;
+            font-size: 10vw;
+            border-radius: 20px;
+            margin: 3%;
+            text-align: center;
+        }
+
+        .insideRight {
+            margin: 10%;
+            background-color: aquamarine;
+
+        }
+
+        .right {
+            background-color: antiquewhite;
+            width: 60%;
+        }
+
+        .check {
+            width: 40%;
+            height: 40px;
+            border-radius: 10px;
+        }
+        .ruleIns{
+            margin: 2% 10% 0% 10%;
+            background-color: azure;
+            text-align: left;
+        }
+        .text{
+            font-size:3vw;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="all">
+        <div class="left">
+            <div class="insideLeft">
+                <br>
+                <span style="font-size: 30px;">记分卡：</span>
+                <br>
+                <div class="subcss"><span class="text">一的和：</span><input id="points1" type="button" value="0" class="submit"></div>
+                <div class="subcss"><span class="text">二的和：</span><input id="points2" type="button" value="0" class="submit"></div>
+                <div class="subcss"><span class="text">三的和：</span><input id="points3" type="button" value="0" class="submit"><br>
+                </div>
+                <div class="subcss"><span class="text">四的和：</span><input id="points4" type="button" value="0" class="submit"></div>
+                <div class="subcss"><span class="text">五的和：</span><input id="points5" type="button" value="0" class="submit"></div>
+                <div class="subcss"><span class="text">六的和：</span><input id="points6" type="button" value="0" class="submit"></div>
+                <div class="subcss"><span class="text">加一起：</span><input id="points7" type="button" value="0" class="submit"></div>
+
+                <div class="subcss"><span class="text">三带二：</span><input id="points8" type="button" value="0" class="submit"></div>
+                <div class="subcss"><span class="text">四带一：</span><input id="points9" type="button" value="0" class="submit"></div>
+                <div class="subcss"><span class="text">小顺子：</span><input id="points10" type="button" value="0" class="submit"></div>
+                <div class="subcss"><span class="text">大顺子：</span><input id="points11" type="button" value="0" class="submit"></div>
+                <div class="subcss"><span class="text">全一样：</span><input id="points12" type="button" value="0" class="submit"></div>
+
+
+                <p>总得分:<span id="total">0</span>分</p>
+            </div>
+        </div>
+        <div class="right">
+            <div class="insideRight">
+                <div id="gameover" class="gameover">!点击roll开始游戏吧!</div><br><br>
+                <div class="dice">骰子点数：</div>
+                <br>
+                <div class="diceUp"><input id="btn1" type="button" value="?" class="btn">
+                    <input id="btn2" type="button" value="?" class="btn">
+                </div>
+                <div class="diceDown"><input id="btn3" type="button" value="?" class="btn">
+                    <input id="btn4" type="button" value="?" class="btn">
+                    <input id="btn5" type="button" value="?" class="btn">
+                </div>
+
+                <br><br>
+                <div class="rollDice"><input id="roll" type="button" value="roll" class="check">
+                    <span></span>
+                </div>
+                <div class="rule">
+                    <div class="ruleIns">
+                        <br>游戏规则：<br>
+                        用你的骰子拿到尽量高的得分吧！<br>
+                        点击roll开始投骰子<br>
+                        每个回合有最多3次投掷机会<br>
+                        当每次投掷完，可点击对应的骰子，即视为将其拿出保留<br>
+                        若再次点击roll投掷，拿出保留的骰子的点数将不会有变化<br>
+                        投掷结束后即记分<br>记分卡规则如下
+                        <br>全是x(x=1-6)的分数：x的数量*x，例如3个1得3分，3个6得18分
+                        <br>加一起：5个骰子点数相加
+                        <br>三带二：5个骰子中出现3个一样的+2个一样的，例如33322，得分为5个点数相加
+                        <br>四带一：5个骰子中出现4个一样的+1个随意，例如33332，得分为5个点数相加
+                        <br>小顺子：5个骰子中出现4个连续自然数，例如2345，3456，得分为30分
+                        <br>大顺子：5个骰子中出现5个连续自然数，例如23456，得分为40分
+                        <br>全一样：5个骰子全一样，得50分
+                        <br>当<b>全是x</b>中的得分和超过63分，将获得额外的35分作为奖励
+                        <br>当记分板被填满时，游戏结束，用你的聪明才智，尽量获取更高的分数吧！
+                    
+                    </div>
+                </div>
+                <br><input id="reset" type="button" value="重新开始！">
+            </div>
+        </div>
+    </div>
+
+
+
+<script>
+    var sEnd = 6, bEnd = 6;/*检测游戏是否结束*/
+    var bonus = false;/*奖励分*/
+    var totalPoint = 0, stotal = 0, btotal = 0;
+    var rolltimes = 3;
+    var CanBSet = true;/*防止连续点击两次记分，判断是否已经完成一次记分*/
+    var oneSet = false, twoSet = false, threeSet = false, fourSet = false, fiveSet = false, sixSet = false
+        , sevenSet = false, eightSet = false, nineSet = false, tenSet = false, elevenSet = false, twelveSet = false;/*判断是否已经完成记分，防止记分后记分板仍然产生数字变化*/
+
+    document.getElementById("roll").onclick = rolling;
+
+    function rollnum() {
+        for (var i = 0; i < 5; i++) {
+            if (!document.getElementsByClassName("btn")[i].disabled) {
+                document.getElementsByClassName("btn")[i].value = Math.floor(Math.random() * 6 + 1);
+            }
+        }
+        /*调试*/
+        /*document.getElementById("btn1").value="4";
+        document.getElementById("btn2").value="4";
+        document.getElementById("btn3").value="4";
+        document.getElementById("btn4").value="4";
+        document.getElementById("btn5").value="4";*/
+    }
+
+    function rolling() {
+        document.getElementById("gameover").innerHTML = "游戏中..."
+        CanBSet = true;
+        rollnum();
+        setChange();
+        setNumUnlock();
+        if (rollTime()) {
+            for (var i = 0; i < 5; i++) {
+                document.getElementsByClassName("btn")[i].disabled = '1';
+            }
+        } else {
+            onclickBtn();
+        }
+        submitNum();
+    }
+
+    function setChange() {
+        point1();
+        point2();
+        point3();
+        point4();
+        point5();
+        point6();
+        point7();
+        point8();
+        point9();
+        point10();
+        point11();
+        point12();
+
+
+    }
+
+    /*实现骰子的检测，放进一个数组*/
+    function diceCheck() {
+        /*arr为处理后，obj为处理前*/
+        var obj = {}, key;
+        var arr = [0, 0, 0, 0, 0, 0, 0];
+        for (var i = 0; i < 5; i++) {
+            obj[i] = document.getElementsByClassName("btn")[i].value;
+        }
+        for (var i = 0; i < 5; i++) {
+            key = obj[i];
+            arr[key]++;
+
+        }
+        return arr;
+    }
+
+    /*实现得分的动态显示*/
+    function point1() {
+        var one = 0;
+        var oneCheck = diceCheck();
+        /*for (var i = 0; i < 5; i++) {
+            if (document.getElementsByClassName("btn")[i].value == 1) {
+                one++;
+            }
+
+        }*/
+        one = 1 * (oneCheck[1]);
+        if (!oneSet) {
+            document.getElementById("points1").value = one;
+        }
+    }
+
+    function point2() {
+        var two = 0;
+        var twoCheck = diceCheck();
+        two = 2 * (twoCheck[2]);
+        if (!twoSet) {
+            document.getElementById("points2").value = two;
+        }
+    }
+
+    function point3() {
+        var three = 0;
+        var threeCheck = diceCheck();
+        three = 3 * (threeCheck[3]);
+        if (!threeSet) {
+            document.getElementById("points3").value = three;
+        }
+
+    }
+
+    function point4() {
+        var four = 0;
+        var fourCheck = diceCheck();
+        four = 4 * (fourCheck[4]);
+        if (!fourSet) {
+            document.getElementById("points4").value = four;
+        }
+
+
+    }
+
+    function point5() {
+        var five = 0;
+        var fiveCheck = diceCheck();
+        five = 5 * (fiveCheck[5]);
+        if (!fiveSet) {
+            document.getElementById("points5").value = five;
+        }
+
+    }
+
+    function point6() {
+        var six = 0;
+        var sixCheck = diceCheck();
+        six = 6 * (sixCheck[6]);
+        if (!sixSet) {
+            document.getElementById("points6").value = six;
+        }
+
+    }
+
+    function point7() {
+        var seven = 0;
+        var sevenCheck = diceCheck();
+        for (var i = 0; i < 7; i++) {
+            seven += parseInt(sevenCheck[i]) * i;
+        }
+
+        if (!sevenSet) {
+            document.getElementById("points7").value = seven;
+        }
+
+    }
+
+    function point8() {
+        var eight = 0;
+        var s = false, b = false, temp = 0;/*检测是否有3个一样的，～2个一样的*/
+        var eightCheck = diceCheck();
+        for (var i = 1; i < 7; i++) {
+            temp += parseInt(eightCheck[i] * i);
+            if (eightCheck[i] == 3) b = true;
+            if (eightCheck[i] == 2) s = true;
+            if (eightCheck[i] == 5) {
+                s = true;
+                b = true;
+            }
+        }
+        if (s) {
+            if (b)
+                eight = temp;
+        }
+        if (!eightSet) {
+            document.getElementById("points8").value = eight;
+        }
+
+    }
+
+    function point9() {
+        var nine = 0, temp = 0, exist = false;
+        var nineCheck = diceCheck();
+        for (var i = 1; i < 7; i++) {
+            temp += parseInt(nineCheck[i] * i);
+            if (nineCheck[i] >= 4) exist = true;
+        }
+        if (exist) nine = temp;
+        if (!nineSet) {
+            document.getElementById("points9").value = nine;
+        }
+
+    }
+
+    function point10() {
+        var ten = 0, exist = false;
+        var tenCheck = diceCheck();
+        if (tenCheck[1] >= 1 && tenCheck[2] >= 1 && tenCheck[3] >= 1 && tenCheck[4] >= 1) exist = true;
+        if (tenCheck[5] >= 1 && tenCheck[2] >= 1 && tenCheck[3] >= 1 && tenCheck[4] >= 1) exist = true;
+        if (tenCheck[5] >= 1 && tenCheck[6] >= 1 && tenCheck[3] >= 1 && tenCheck[4] >= 1) exist = true;
+        if (exist) ten = 30;
+        if (!tenSet) {
+            document.getElementById("points10").value = ten;
+        }
+    }
+
+    function point11() {
+
+        var eleven = 0, exist = false;
+        var elevenCheck = diceCheck();
+        if (elevenCheck[1] >= 1 && elevenCheck[2] >= 1 && elevenCheck[3] >= 1 && elevenCheck[4] >= 1 && elevenCheck[5] >= 1) exist = true;
+        if (elevenCheck[6] >= 1 && elevenCheck[2] >= 1 && elevenCheck[3] >= 1 && elevenCheck[4] >= 1 && elevenCheck[5] >= 1) exist = true;
+
+        if (exist) eleven = 40;
+        if (!elevenSet) {
+            document.getElementById("points11").value = eleven;
+        }
+
+    }
+
+    function point12() {
+        var twelve = 0, exist = false;
+        var twelveCheck = diceCheck();
+        for (var i = 1; i < 7; i++) {
+            if (twelveCheck[i] >= 5) exist = true;
+        }
+        if (exist) twelve = 50;
+        if (!twelveSet) {
+            document.getElementById("points12").value = twelve;
+        }
+
+    }
+
+    /*判断投掷次数是否用完*/
+    function rollTime() {
+        rolltimes--;
+        if (rolltimes == 0) {
+            document.getElementById("roll").disabled = '1';
+            return true;
+        }
+        return false;
+    }
+
+    /*当每回合投掷次数使用完，不可点击骰子*/
+    function setNumUnlock() {
+        if (rolltimes == 3) {
+            for (var i = 0; i < 5; i++) {
+                document.getElementsByClassName("btn")[i].removeAttribute("disabled");
+            }
+        }
+    }
+
+    /*点击骰子，保留点数*/
+    function onclickBtn() {
+        document.getElementById('btn1').onclick = function () {
+            if (document.getElementById('btn1').value != "?") {
+                document.getElementById('btn1').disabled = '1';
+
+            }
+        }
+        document.getElementById('btn2').onclick = function () {
+            if (document.getElementById('btn2').value != "?") {
+                document.getElementById('btn2').disabled = '1';
+            }
+        }
+        document.getElementById('btn3').onclick = function () {
+            if (document.getElementById('btn3').value != "?") {
+                document.getElementById('btn3').disabled = '1';
+            }
+        }
+        document.getElementById('btn4').onclick = function () {
+            if (document.getElementById('btn4').value != "?") {
+                document.getElementById('btn4').disabled = '1';
+            }
+        }
+        document.getElementById('btn5').onclick = function () {
+            if (document.getElementById('btn5').value != "?") {
+                document.getElementById('btn5').disabled = '1';
+            }
+        }
+    }
+
+    /*记分逻辑*/
+    function submitNum() {
+        document.getElementById("points1").onclick = function () {
+            submit1();
+            CanBSet = false;
+        }
+        document.getElementById("points2").onclick = function () {
+            submit2();
+            CanBSet = false;
+        }
+        document.getElementById("points3").onclick = function () {
+            submit3();
+            CanBSet = false;
+        }
+        document.getElementById("points4").onclick = function () {
+            submit4();
+            CanBSet = false;
+        }
+        document.getElementById("points5").onclick = function () {
+            submit5();
+            CanBSet = false;
+        }
+        document.getElementById("points6").onclick = function () {
+            submit6();
+            CanBSet = false;
+        }
+        document.getElementById("points7").onclick = function () {
+            submit7();
+            CanBSet = false;
+        }
+        document.getElementById("points8").onclick = function () {
+            submit8();
+            CanBSet = false;
+        }
+        document.getElementById("points9").onclick = function () {
+            submit9();
+            CanBSet = false;
+        }
+        document.getElementById("points10").onclick = function () {
+            submit10();
+            CanBSet = false;
+        }
+        document.getElementById("points11").onclick = function () {
+            submit11();
+            CanBSet = false;
+        }
+        document.getElementById("points12").onclick = function () {
+            submit12();
+            CanBSet = false;
+        }
+
+    }
+
+    /*单个记分*/
+    function submit1() {
+        if (CanBSet) {
+            document.getElementById("points1").disabled = "1";
+            oneSet = true;
+            resetRoll();
+            resetNumLock();
+            sCount(parseInt(document.getElementById("points1").value));
+        } else {
+            warning();
+        }
+
+    }
+
+    function submit2() {
+        if (CanBSet) {
+            document.getElementById("points2").disabled = "1";
+            twoSet = true;
+            resetRoll();
+            resetNumLock();
+            sCount(parseInt(document.getElementById("points2").value));
+        } else {
+            warning();
+        }
+    }
+
+    function warning() {
+        alert("请先投骰子!");
+    }
+
+    function submit3() {
+        if (CanBSet) {
+            document.getElementById("points3").disabled = "1";
+            threeSet = true;
+            resetRoll();
+            resetNumLock();
+            sCount(parseInt(document.getElementById("points3").value));
+        } else {
+            warning();
+        }
+    }
+
+    function submit4() {
+        if (CanBSet) {
+            document.getElementById("points4").disabled = "1";
+            fourSet = true;
+            resetRoll();
+            resetNumLock();
+            sCount(parseInt(document.getElementById("points4").value));
+
+        } else {
+            warning();
+        }
+
+    }
+
+    function submit5() {
+        if (CanBSet) {
+            document.getElementById("points5").disabled = "1";
+            fiveSet = true;
+            resetRoll();
+            resetNumLock();
+            sCount(parseInt(document.getElementById("points5").value));
+        } else {
+            warning();
+        }
+
+    }
+
+    function submit6() {
+        if (CanBSet) {
+            document.getElementById("points6").disabled = "1";
+            sixSet = true;
+            resetRoll();
+            resetNumLock();
+            sCount(parseInt(document.getElementById("points6").value));
+        } else {
+            warning();
+
+        }
+
+    }
+
+    function submit7() {
+        if (CanBSet) {
+            document.getElementById("points7").disabled = "1";
+            sevenSet = true;
+            resetRoll();
+            resetNumLock();
+            bCount(parseInt(document.getElementById("points7").value));
+        } else {
+            warning();
+        }
+    }
+
+    function submit8() {
+        if (CanBSet) {
+            document.getElementById("points8").disabled = "1";
+            eightSet = true;
+            resetRoll();
+            resetNumLock();
+            bCount(parseInt(document.getElementById("points8").value));
+        } else {
+            warning();
+        }
+    }
+
+    function submit9() {
+        if (CanBSet) {
+            document.getElementById("points9").disabled = "1";
+            nineSet = true;
+            resetRoll();
+            resetNumLock();
+            bCount(parseInt(document.getElementById("points9").value));
+        } else {
+            warning();
+        }
+    }
+
+    function submit10() {
+        if (CanBSet) {
+            document.getElementById("points10").disabled = "1";
+            tenSet = true;
+            resetRoll();
+            resetNumLock();
+            bCount(parseInt(document.getElementById("points10").value));
+        } else {
+            warning();
+        }
+    }
+
+    function submit11() {
+        if (CanBSet) {
+            document.getElementById("points11").disabled = "1";
+            elevenSet = true;
+            resetRoll();
+            resetNumLock();
+            bCount(parseInt(document.getElementById("points11").value));
+        } else {
+            warning();
+        }
+    }
+
+    function submit12() {
+        if (CanBSet) {
+            document.getElementById("points12").disabled = "1";
+            twelveSet = true;
+            resetRoll();
+            resetNumLock();
+            bCount(parseInt(document.getElementById("points12").value));
+        } else {
+            warning();
+        }
+    }
+
+    function warning() {
+
+
+        alert("请先投骰子!");
+
+    }
+
+    function resetRoll() {
+        rolltimes = 3;
+        document.getElementById("roll").removeAttribute("disabled");
+
+    }
+
+    function resetNumLock() {
+        for (var i = 0; i < 5; i++) {
+            document.getElementsByClassName("btn")[i].removeAttribute("disabled");
+            document.getElementsByClassName("btn")[i].value = "?";
+
+        }
+
+    }
+
+    function totalCount() {
+        if (sEnd == 0 && stotal >= 63) {
+            stotal += 35;
+            alert("恭喜获得额外35分！")
+        }
+        totalPoint = stotal + btotal;
+        document.getElementById("total").innerHTML = totalPoint;
+        endCheck();
+        /*totalPoint += parseInt(num);
+        bonusCheck();
+        document.getElementById("total").innerHTML = totalPoint;
+        end--;
+        endCheck();*/
+    }
+
+    function sCount(num) {
+        stotal += parseInt(num);
+        sEnd--;
+        totalCount();
+    }
+
+    function bCount(num) {
+        btotal += parseInt(num);
+        bEnd--;
+        totalCount();
+    }
+
+    function endCheck() {
+        if (sEnd == 0 && bEnd == 0) {
+            document.getElementById("gameover").innerHTML = "游戏结束！"
+            setTimeout(function () {
+                alert("游戏结束！你的得分是" + totalPoint + "分！");
+            }, 500)
+            document.getElementById("roll").disabled = "1";
+            for (var i = 0; i < 5; i++) {
+                document.getElementsByClassName("btn")[i].disabled = "1";
+            }
+        }
+    }
+
+    document.getElementById("reset").onclick = function () {
+        location.reload();
+    }
+</script></body></html>
