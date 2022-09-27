@@ -1,2 +1,6 @@
-# Yahtzee-New-Version-
-update more methods on Yahtzee. And more lightly, can be play only by single html
+完整版的快艇骰子
+---------------
+1.添加了每次投掷之后，能任意锁定当前投掷点数的功能
+2.添加了作弊按钮，点击即可获得任意5个相同的点数（for fun）
+3.更友好的图形界面（在女朋友的视觉指导下）
+4.
